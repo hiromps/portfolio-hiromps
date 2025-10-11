@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { Providers } from "@/components/providers"
@@ -8,13 +8,19 @@ const inter = Inter({
   variable: "--font-sans",
 })
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+}
+
 export const metadata: Metadata = {
+  metadataBase: new URL('https://hiromps.dev'),
   title: "hiromps - AI自動化エンジニア",
   description: "iPhoneマクロを活用したSNS自動化とPWA開発を専門とするAI自動化エンジニア。Instagram自動化、SNSマーケティングプラットフォーム、中小企業診断士向け学習支援アプリの開発。",
   keywords: "hiromps, AI自動化, iPhone自動化, SNS自動化, Instagram自動化, PWA開発, 中小企業診断士, Web開発",
   authors: [{ name: "hiromps" }],
   creator: "hiromps",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   openGraph: {
     type: "website",
     locale: "ja_JP",
