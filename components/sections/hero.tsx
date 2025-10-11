@@ -24,7 +24,7 @@ export function HeroSection() {
           <div className="relative w-full h-full">
             {/* 内側の円 - 速い回転 */}
             <OrbitingCircles
-              className="size-[120px] border-none bg-transparent"
+              className="size-[80px] border-none bg-transparent"
               duration={20}
               delay={0}
               radius={180}
@@ -32,13 +32,13 @@ export function HeroSection() {
               <Image
                 src="/smartgram.png"
                 alt="SmartGram"
-                width={120}
-                height={120}
+                width={80}
+                height={80}
                 className="rounded-lg object-cover shadow-2xl"
               />
             </OrbitingCircles>
             <OrbitingCircles
-              className="size-[120px] border-none bg-transparent"
+              className="size-[80px] border-none bg-transparent"
               duration={20}
               delay={10}
               radius={180}
@@ -46,15 +46,15 @@ export function HeroSection() {
               <Image
                 src="/chatbot.png"
                 alt="Chatbot"
-                width={120}
-                height={120}
+                width={80}
+                height={80}
                 className="rounded-lg object-cover shadow-2xl"
               />
             </OrbitingCircles>
 
             {/* 外側の円 - 逆回転 */}
             <OrbitingCircles
-              className="size-[140px] border-none bg-transparent"
+              className="size-[100px] border-none bg-transparent"
               radius={320}
               duration={30}
               reverse
@@ -62,13 +62,13 @@ export function HeroSection() {
               <Image
                 src="/openart.png"
                 alt="OpenArt"
-                width={140}
-                height={140}
+                width={100}
+                height={100}
                 className="rounded-lg object-cover shadow-2xl"
               />
             </OrbitingCircles>
             <OrbitingCircles
-              className="size-[140px] border-none bg-transparent"
+              className="size-[100px] border-none bg-transparent"
               radius={320}
               duration={30}
               delay={15}
@@ -77,8 +77,8 @@ export function HeroSection() {
               <Image
                 src="/socialgoodworld.png"
                 alt="Social Good World"
-                width={140}
-                height={140}
+                width={100}
+                height={100}
                 className="rounded-lg object-cover shadow-2xl"
               />
             </OrbitingCircles>
