@@ -1,10 +1,12 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import Typewriter from "typewriter-effect"
-import { Github, Twitter, ChevronDown, Sparkles, Cpu, Zap } from "lucide-react"
+import { Github, Twitter, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { OrbitingCircles } from "@/components/ui/orbiting-circles"
 
 export function HeroSection() {
   return (
@@ -14,54 +16,72 @@ export function HeroSection() {
     >
       {/* 背景のアニメーション要素 */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-72 sm:h-72 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse animation-delay-2000" />
+        {/* 背景のグラデーションオーバーレイ */}
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/90 z-10" />
 
-        {/* AI/自動化をイメージさせるアイコン - モバイルで非表示 */}
-        <motion.div
-          className="hidden sm:block absolute top-20 left-20 text-primary/20"
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 360],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-        >
-          <Cpu className="w-12 h-12 sm:w-16 sm:h-16" />
-        </motion.div>
+        {/* OrbitingCirclesコンテナ */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] z-0">
+          {/* 内側の円 - 速い回転 */}
+          <OrbitingCircles
+            className="size-[80px] border-none bg-transparent"
+            duration={20}
+            delay={0}
+            radius={150}
+          >
+            <Image
+              src="/smartgram.png"
+              alt="SmartGram"
+              width={80}
+              height={80}
+              className="rounded-lg object-cover shadow-lg"
+            />
+          </OrbitingCircles>
+          <OrbitingCircles
+            className="size-[80px] border-none bg-transparent"
+            duration={20}
+            delay={10}
+            radius={150}
+          >
+            <Image
+              src="/chatbot.png"
+              alt="Chatbot"
+              width={80}
+              height={80}
+              className="rounded-lg object-cover shadow-lg"
+            />
+          </OrbitingCircles>
 
-        <motion.div
-          className="hidden sm:block absolute bottom-20 right-20 text-blue-500/20"
-          animate={{
-            y: [0, 20, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-        >
-          <Zap className="w-16 h-16 sm:w-20 sm:h-20" />
-        </motion.div>
-
-        <motion.div
-          className="hidden md:block absolute top-1/2 right-1/3 text-primary/10"
-          animate={{
-            rotate: [0, -360],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-        >
-          <Sparkles className="w-20 h-20 lg:w-24 lg:h-24" />
-        </motion.div>
+          {/* 外側の円 - 逆回転 */}
+          <OrbitingCircles
+            className="size-[100px] border-none bg-transparent"
+            radius={280}
+            duration={30}
+            reverse
+          >
+            <Image
+              src="/openart.png"
+              alt="OpenArt"
+              width={100}
+              height={100}
+              className="rounded-lg object-cover shadow-lg"
+            />
+          </OrbitingCircles>
+          <OrbitingCircles
+            className="size-[100px] border-none bg-transparent"
+            radius={280}
+            duration={30}
+            delay={15}
+            reverse
+          >
+            <Image
+              src="/socialgoodworld.png"
+              alt="Social Good World"
+              width={100}
+              height={100}
+              className="rounded-lg object-cover shadow-lg"
+            />
+          </OrbitingCircles>
+        </div>
       </div>
 
       <div className="container mx-auto px-4 z-10">
