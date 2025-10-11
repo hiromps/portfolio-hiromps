@@ -15,76 +15,78 @@ export function HeroSection() {
       className="min-h-screen flex items-center justify-center relative overflow-hidden px-4 py-16 md:py-0"
     >
       {/* 背景のアニメーション要素 */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 z-0">
         {/* 背景のグラデーションオーバーレイ */}
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/90 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-background/50 via-background/70 to-background/50 z-20" />
 
         {/* OrbitingCirclesコンテナ */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] z-0">
-          {/* 内側の円 - 速い回転 */}
-          <OrbitingCircles
-            className="size-[80px] border-none bg-transparent"
-            duration={20}
-            delay={0}
-            radius={150}
-          >
-            <Image
-              src="/smartgram.png"
-              alt="SmartGram"
-              width={80}
-              height={80}
-              className="rounded-lg object-cover shadow-lg"
-            />
-          </OrbitingCircles>
-          <OrbitingCircles
-            className="size-[80px] border-none bg-transparent"
-            duration={20}
-            delay={10}
-            radius={150}
-          >
-            <Image
-              src="/chatbot.png"
-              alt="Chatbot"
-              width={80}
-              height={80}
-              className="rounded-lg object-cover shadow-lg"
-            />
-          </OrbitingCircles>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] z-10">
+          <div className="relative w-full h-full">
+            {/* 内側の円 - 速い回転 */}
+            <OrbitingCircles
+              className="size-[120px] border-none bg-transparent"
+              duration={20}
+              delay={0}
+              radius={180}
+            >
+              <Image
+                src="/smartgram.png"
+                alt="SmartGram"
+                width={120}
+                height={120}
+                className="rounded-lg object-cover shadow-2xl"
+              />
+            </OrbitingCircles>
+            <OrbitingCircles
+              className="size-[120px] border-none bg-transparent"
+              duration={20}
+              delay={10}
+              radius={180}
+            >
+              <Image
+                src="/chatbot.png"
+                alt="Chatbot"
+                width={120}
+                height={120}
+                className="rounded-lg object-cover shadow-2xl"
+              />
+            </OrbitingCircles>
 
-          {/* 外側の円 - 逆回転 */}
-          <OrbitingCircles
-            className="size-[100px] border-none bg-transparent"
-            radius={280}
-            duration={30}
-            reverse
-          >
-            <Image
-              src="/openart.png"
-              alt="OpenArt"
-              width={100}
-              height={100}
-              className="rounded-lg object-cover shadow-lg"
-            />
-          </OrbitingCircles>
-          <OrbitingCircles
-            className="size-[100px] border-none bg-transparent"
-            radius={280}
-            duration={30}
-            delay={15}
-            reverse
-          >
-            <Image
-              src="/socialgoodworld.png"
-              alt="Social Good World"
-              width={100}
-              height={100}
-              className="rounded-lg object-cover shadow-lg"
-            />
-          </OrbitingCircles>
+            {/* 外側の円 - 逆回転 */}
+            <OrbitingCircles
+              className="size-[140px] border-none bg-transparent"
+              radius={320}
+              duration={30}
+              reverse
+            >
+              <Image
+                src="/openart.png"
+                alt="OpenArt"
+                width={140}
+                height={140}
+                className="rounded-lg object-cover shadow-2xl"
+              />
+            </OrbitingCircles>
+            <OrbitingCircles
+              className="size-[140px] border-none bg-transparent"
+              radius={320}
+              duration={30}
+              delay={15}
+              reverse
+            >
+              <Image
+                src="/socialgoodworld.png"
+                alt="Social Good World"
+                width={140}
+                height={140}
+                className="rounded-lg object-cover shadow-2xl"
+              />
+            </OrbitingCircles>
+          </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 z-10">
+      <div className="container mx-auto px-4 z-30 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
