@@ -4,6 +4,7 @@ import dynamic from "next/dynamic"
 import { Suspense } from "react"
 import { LoadingScreen } from "@/components/loading"
 import { Navigation } from "@/components/navigation"
+import { Footer } from "@/components/sections/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
 
 // 動的インポートでパフォーマンス最適化
@@ -18,7 +19,7 @@ const HeroSection = dynamic(
 const HeroScrollDemo = dynamic(
   () => import("@/components/sections/hero-scroll-demo").then((mod) => ({ default: mod.HeroScrollDemo })),
   {
-    loading: () => <div className="min-h-[800px]" />,
+    loading: () => <div className="min-h-[400px]" />,
     ssr: true,
   }
 )
@@ -56,7 +57,7 @@ export default function Home() {
         <Suspense fallback={<div className="min-h-screen" />}>
           <HeroSection />
         </Suspense>
-        <Suspense fallback={<div className="min-h-[800px]" />}>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
           <HeroScrollDemo />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px]" />}>
@@ -69,6 +70,7 @@ export default function Home() {
           <ContactSection />
         </Suspense>
       </main>
+      <Footer />
       <ScrollToTop />
     </>
   )

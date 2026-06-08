@@ -1,112 +1,53 @@
 "use client"
 
 import * as React from "react"
-import Image from "next/image"
 import { motion } from "framer-motion"
 import Typewriter from "typewriter-effect"
-import { Github, Twitter, ChevronDown } from "lucide-react"
+import { ArrowDown, Github, Twitter, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { OrbitingCircles } from "@/components/ui/orbiting-circles"
 
 export function HeroSection() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden px-4 py-16 md:py-0"
+      className="relative min-h-screen flex items-center overflow-hidden"
     >
-      {/* 背景のアニメーション要素 */}
-      <div className="absolute inset-0 z-0">
-        {/* 背景のグラデーションオーバーレイ */}
-        <div className="absolute inset-0 bg-gradient-to-br from-background/50 via-background/70 to-background/50 z-20" />
+      {/* 背景グリッドパターン */}
+      <div className="absolute inset-0 z-0 bg-grid-pattern [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)]" />
 
-        {/* OrbitingCirclesコンテナ */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] z-10">
-          <div className="relative w-full h-full">
-            {/* 内側の円 - 速い回転 */}
-            <OrbitingCircles
-              className="size-[80px] border-none bg-transparent"
-              duration={20}
-              delay={0}
-              radius={180}
-            >
-              <Image
-                src="/smartgram.png"
-                alt="SmartGram"
-                width={80}
-                height={80}
-                className="rounded-lg object-cover shadow-2xl"
-              />
-            </OrbitingCircles>
-            <OrbitingCircles
-              className="size-[80px] border-none bg-transparent"
-              duration={20}
-              delay={10}
-              radius={180}
-            >
-              <Image
-                src="/chatbot.png"
-                alt="Chatbot"
-                width={80}
-                height={80}
-                className="rounded-lg object-cover shadow-2xl"
-              />
-            </OrbitingCircles>
+      {/* 背景グラデーションオーブ */}
+      <div className="absolute top-1/4 -left-32 w-[600px] h-[600px] bg-gradient-orb bg-primary/30" />
+      <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-gradient-orb bg-chart-3/20" />
 
-            {/* 外側の円 - 逆回転 */}
-            <OrbitingCircles
-              className="size-[100px] border-none bg-transparent"
-              radius={320}
-              duration={30}
-              reverse
-            >
-              <Image
-                src="/openart.png"
-                alt="OpenArt"
-                width={100}
-                height={100}
-                className="rounded-lg object-cover shadow-2xl"
-              />
-            </OrbitingCircles>
-            <OrbitingCircles
-              className="size-[100px] border-none bg-transparent"
-              radius={320}
-              duration={30}
-              delay={15}
-              reverse
-            >
-              <Image
-                src="/socialgoodworld.png"
-                alt="Social Good World"
-                width={100}
-                height={100}
-                className="rounded-lg object-cover shadow-2xl"
-              />
-            </OrbitingCircles>
-          </div>
-        </div>
-      </div>
+      <div className="container mx-auto max-w-7xl px-6 lg:px-8 z-10 relative py-32 lg:py-40">
+        <div className="max-w-3xl">
+          {/* アイブロー */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-6"
+          >
+            AI Automation Engineer
+          </motion.p>
 
-      <div className="container mx-auto px-4 z-30 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center"
-        >
           {/* 名前 */}
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6"
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight text-foreground mb-8"
           >
-            <span className="bg-gradient-to-r from-primary via-blue-600 to-cyan-600 bg-clip-text text-transparent animate-gradient">
-              hiromps
-            </span>
+            hiromps
           </motion.h1>
 
           {/* タイピングアニメーション */}
-          <div className="text-xl sm:text-2xl md:text-3xl mb-6 sm:mb-8 h-10 flex items-center justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-xl sm:text-2xl lg:text-3xl text-muted-foreground mb-10 h-10"
+          >
             <Typewriter
               options={{
                 strings: [
@@ -121,67 +62,91 @@ export function HeroSection() {
                 delay: 80,
               }}
             />
-          </div>
+          </motion.div>
 
           {/* 自己紹介 */}
           <motion.p
-            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-6 sm:mb-8 px-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-base lg:text-lg text-muted-foreground max-w-xl mb-12 leading-relaxed"
           >
             iPhoneマクロを活用したInstagramなどのSNS自動化を専門としています。
-            <br className="hidden sm:block" />
-            <span className="sm:hidden"> </span>
             SNSマーケティングプラットフォームの運営や、中小企業診断士向けの
-            <br className="hidden sm:block" />
-            <span className="sm:hidden"> </span>
             学習支援PWAアプリの開発も手がけています。
           </motion.p>
 
-          {/* ソーシャルリンク */}
+          {/* CTAボタン */}
           <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="flex flex-wrap gap-4"
           >
             <Button
-              variant="outline"
               size="lg"
-              className="group w-full sm:w-auto min-h-[44px] touch-manipulation"
-              onClick={() => window.open("https://github.com/hiromps", "_blank")}
+              className="h-12 px-8 text-base"
+              onClick={() => {
+                const el = document.querySelector("#contact")
+                if (el) el.scrollIntoView({ behavior: "smooth" })
+              }}
             >
-              <Github className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
-              GitHub
+              <Send className="mr-2 h-4 w-4" />
+              お問い合わせ
             </Button>
             <Button
               variant="outline"
               size="lg"
-              className="group w-full sm:w-auto min-h-[44px] touch-manipulation"
-              onClick={() => window.open("https://x.com/hiromps_dev", "_blank")}
+              className="h-12 px-8 text-base"
+              onClick={() => {
+                const el = document.querySelector("#projects")
+                if (el) el.scrollIntoView({ behavior: "smooth" })
+              }}
             >
-              <Twitter className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
-              X (Twitter)
+              プロジェクトを見る
             </Button>
           </motion.div>
 
-          {/* スクロールインジケーター */}
+          {/* ソーシャルリンク */}
           <motion.div
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-            animate={{
-              y: [0, 10, 0],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+            className="flex gap-3 mt-8"
           >
-            <ChevronDown className="w-8 h-8 text-muted-foreground" />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-muted-foreground hover:text-foreground"
+              onClick={() => window.open("https://github.com/hiromps", "_blank")}
+              aria-label="GitHub"
+            >
+              <Github className="h-5 w-5" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-muted-foreground hover:text-foreground"
+              onClick={() => window.open("https://x.com/hiromps_dev", "_blank")}
+              aria-label="X (Twitter)"
+            >
+              <Twitter className="h-5 w-5" />
+            </Button>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
+
+      {/* スクロールインジケーター */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+      >
+        <div className="flex flex-col items-center gap-2 text-muted-foreground/60">
+          <span className="text-xs font-medium uppercase tracking-widest">Scroll</span>
+          <ArrowDown className="w-4 h-4" />
+        </div>
+      </motion.div>
     </section>
   )
 }

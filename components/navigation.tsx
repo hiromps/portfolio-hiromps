@@ -2,15 +2,14 @@
 
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Github, Twitter, ArrowUpRight } from "lucide-react"
 import { ThemeToggle } from "./theme-toggle"
 import { Button } from "@/components/ui/button"
 
 const navItems = [
-  { name: "ホーム", href: "#hero" },
   { name: "プロジェクト", href: "#projects" },
   { name: "スキル", href: "#skills" },
-  { name: "連絡先", href: "#contact" },
+  { name: "お問い合わせ", href: "#contact" },
 ]
 
 export function Navigation() {
@@ -21,7 +20,7 @@ export function Navigation() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
     }
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
@@ -34,46 +33,74 @@ export function Navigation() {
   }
 
   return (
-    <motion.nav
+    <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b"
+          ? "bg-background/80 backdrop-blur-xl border-b border-border/40 shadow-sm"
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <motion.div
-            className="font-bold text-xl"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 lg:h-18">
+          {/* ロゴ */}
+          <motion.button
+            onClick={() => scrollToSection("#hero")}
+            className="font-bold text-xl lg:text-2xl tracking-tight text-foreground hover:text-foreground/80 transition-colors"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-              hiromps
-            </span>
-          </motion.div>
+            hiromps<span className="text-muted-foreground">.</span>
+          </motion.button>
 
           {/* デスクトップナビゲーション */}
-          <div className="hidden md:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
-              <motion.button
+              <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="text-sm font-medium transition-colors hover:text-primary"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-accent/50"
               >
                 {item.name}
-              </motion.button>
+              </button>
             ))}
+          </nav>
+
+          {/* デスクトップ: CTA + テーマ */}
+          <div className="hidden lg:flex items-center gap-3">
             <ThemeToggle />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-muted-foreground hover:text-foreground"
+              onClick={() => window.open("https://github.com/hiromps", "_blank")}
+              aria-label="GitHub"
+            >
+              <Github className="h-5 w-5" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-muted-foreground hover:text-foreground"
+              onClick={() => window.open("https://x.com/hiromps_dev", "_blank")}
+              aria-label="X (Twitter)"
+            >
+              <Twitter className="h-5 w-5" />
+            </Button>
+            <Button
+              size="sm"
+              className="ml-2"
+              onClick={() => scrollToSection("#contact")}
+            >
+              お問い合わせ
+              <ArrowUpRight className="ml-1.5 h-3.5 w-3.5" />
+            </Button>
           </div>
 
           {/* モバイルメニューボタン */}
-          <div className="flex items-center space-x-4 md:hidden">
+          <div className="flex items-center gap-2 lg:hidden">
             <ThemeToggle />
             <Button
               variant="ghost"
@@ -98,25 +125,50 @@ export function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-background border-b"
+            transition={{ duration: 0.25 }}
+            className="lg:hidden bg-background/95 backdrop-blur-xl border-b border-border/40"
           >
-            <div className="container mx-auto px-4 py-4 space-y-2">
+            <div className="mx-auto px-6 py-6 space-y-1">
               {navItems.map((item) => (
                 <motion.button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left px-4 py-2 text-sm font-medium transition-colors hover:text-primary hover:bg-accent rounded-md"
-                  whileHover={{ x: 10 }}
-                  whileTap={{ scale: 0.95 }}
+                  className="block w-full text-left px-4 py-3 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg transition-colors"
+                  whileHover={{ x: 6 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   {item.name}
                 </motion.button>
               ))}
+              <div className="pt-4 flex gap-3">
+                <Button
+                  size="sm"
+                  className="flex-1"
+                  onClick={() => scrollToSection("#contact")}
+                >
+                  お問い合わせ
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => window.open("https://github.com/hiromps", "_blank")}
+                  aria-label="GitHub"
+                >
+                  <Github className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => window.open("https://x.com/hiromps_dev", "_blank")}
+                  aria-label="X (Twitter)"
+                >
+                  <Twitter className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </motion.header>
   )
 }

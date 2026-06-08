@@ -1,6 +1,8 @@
 "use client";
+
 import React, { useRef } from "react";
 import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
+import Image from "next/image";
 
 export const ContainerScroll = ({
   titleComponent,
@@ -27,22 +29,22 @@ export const ContainerScroll = ({
   }, []);
 
   const scaleDimensions = () => {
-    return isMobile ? [0.7, 0.9] : [1.05, 1];
+    return isMobile ? [0.85, 0.95] : [1.02, 1];
   };
 
-  const rotate = useTransform(scrollYProgress, [0, 1], [20, 0]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [8, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions());
-  const translate = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const translate = useTransform(scrollYProgress, [0, 1], [0, -60]);
 
   return (
     <div
-      className="h-[60rem] md:h-[80rem] flex items-center justify-center relative p-2 md:p-20"
+      className="h-[50rem] lg:h-[70rem] flex items-center justify-center relative p-4 lg:p-20"
       ref={containerRef}
     >
       <div
-        className="py-10 md:py-40 w-full relative"
+        className="py-10 lg:py-40 w-full relative"
         style={{
-          perspective: "1000px",
+          perspective: "1200px",
         }}
       >
         <Header translate={translate} titleComponent={titleComponent} />
@@ -57,10 +59,8 @@ export const ContainerScroll = ({
 export const Header = ({ translate, titleComponent }: any) => {
   return (
     <motion.div
-      style={{
-        translateY: translate,
-      }}
-      className="div max-w-5xl mx-auto text-center mb-16 md:mb-24"
+      style={{ translateY: translate }}
+      className="max-w-4xl mx-auto text-center mb-12 lg:mb-20"
     >
       {titleComponent}
     </motion.div>
@@ -83,11 +83,11 @@ export const Card = ({
         rotateX: rotate,
         scale,
         boxShadow:
-          "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
+          "0 0 #0000000d, 0 8px 24px #0000001a, 0 32px 48px #0000001f, 0 64px 80px #00000014, 0 120px 100px #00000008",
       }}
-      className="max-w-[375px] -mt-12 mx-auto h-[812px] w-[375px] border-[14px] border-[#1f1f1f] p-1 bg-[#1f1f1f] rounded-[56px] shadow-2xl"
+      className="max-w-5xl -mt-8 mx-auto rounded-2xl border border-border/50 bg-card overflow-hidden"
     >
-      <div className="h-full w-full overflow-hidden rounded-[42px] bg-gray-100 dark:bg-zinc-900">
+      <div className="h-full w-full">
         {children}
       </div>
     </motion.div>
